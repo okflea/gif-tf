@@ -1,12 +1,11 @@
 "use client"
 
-import { useAuth } from "@clerk/nextjs";
 import GifContainer from "../components/GifContainer";
 import useLocalStorage from "../utils/useLocalStorage";
 
 const page = () => {
 
-  const { userId, isLoaded }:any = useAuth()
+  const userId ="",isLoaded=""//TODO
   const [favourites, setFavourites] = useLocalStorage(`${userId}`, [])
 
 
@@ -26,9 +25,8 @@ const page = () => {
             title:string
             url:string
           }) => (
-            // <GifContainer key={gif.id} id={gif.id} title={gif.title} url={gif.url} isFav={true} userID={userId} isLoaded={isLoaded} favourites={favourites} setFavourites={setFavourites} />
-
-              <GifContainer key={gif.id} id={gif.id} title={gif.title} url={gif.url} userID={userId} isLoaded={isLoaded} favourites={favourites} setFavourites={setFavourites} isFav={false}/>
+              <p>refactor gifCont</p> //TODO
+              // <GifContainer key={gif.id} id={gif.id} title={gif.title} url={gif.url} userID={userId} isLoaded={isLoaded} favourites={favourites} setFavourites={setFavourites} isFav={false}/>
           ))}
       </div>
     </div>

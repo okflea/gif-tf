@@ -3,7 +3,6 @@
 import { ChangeEvent, useState } from "react";
 import GifContainer from "../components/GifContainer";
 import debounce from "../utils/debounce";
-import { useAuth } from "@clerk/nextjs";
 import useLocalStorage from "../utils/useLocalStorage";
 
 interface Data {
@@ -20,7 +19,7 @@ interface Data {
 const Page = () => {
   const [data, setData] = useState<Array<Data>>([]);
   const [selectedNumber, setSelectedNumber] = useState<number | undefined>();
-  const { userId, isLoaded } : any = useAuth()
+  const userId="",isLoaded=""//TODO 
   const [favourites, setFavourites] = useLocalStorage(`${userId}`, [])
 
 
@@ -88,8 +87,8 @@ const Page = () => {
           <div
             className={`glass mt-4 w-full flex flex-wrap gap-2 justify-center rounded-lg max-w-5xl mx-auto p-5 md:p-16 `}>
             {data.map((gif) => 
-              <GifContainer key={gif.id} id={gif.id} title={gif.title} url={gif.images.fixed_width_downsampled.webp} userID={userId} isLoaded={isLoaded} favourites={favourites} setFavourites={setFavourites} isFav={false}/>
-              // <GifContainer key={gif.id} id:{gif.id} title={gif.title} url={gif.images.fixed_width_downsampled.webp} userID={userId} isLoaded={isLoaded} favourites={favourites} setFavourites={setFavourites} isFav={false} />
+              <p>refactored gifcontainer </p>//TODO
+              // <GifContainer key={gif.id} id={gif.id} title={gif.title} url={gif.images.fixed_width_downsampled.webp} userID={userId} isLoaded={isLoaded} favourites={favourites} setFavourites={setFavourites} isFav={false}/>
             )}
           </div>
 

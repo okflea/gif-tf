@@ -2,12 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { UserButton, useAuth } from '@clerk/nextjs';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname()
-  const { isLoaded, userId } = useAuth()
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -60,11 +58,9 @@ function Header() {
             </Link>
 
             <div>
-              {isLoaded && userId ? (<UserButton />) : (
                 <Link className="block font-semibold md:inline-block md:mt-0 text-gray-300 hover:text-white mr-4" href="/login">
                   Sign In / Sign Up
                 </Link>
-              )}
             </div>
           </div>
         </div>
