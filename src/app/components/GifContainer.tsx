@@ -7,7 +7,7 @@ interface Data {
   title: string;
   url: string;
   }
-const GifContainer = (props:{id:string, url:string, title:string, userID:string, isLoaded:boolean, favourites:Array<Data>, isFav:boolean, setFavourites:Function}) => {
+  const GifContainer = (props:{id:string, url:string, title:string, userID:string, isLoaded:boolean, favourites:Array<Data>, isFav:boolean, setFavourites:Function}) => {
   const { id, url, title, userID, isLoaded, favourites, isFav, setFavourites } = props
   const [isFavourite, setIsFavourite] = useState(isFav)
 
