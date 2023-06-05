@@ -1,36 +1,12 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react'
 
-interface Data {
-  id: string;
-  title: string;
-  url: string;
-  }
-  const GifContainer = (props:{id:string, url:string, title:string, userID:string, isLoaded:boolean, favourites:Array<Data>, isFav:boolean, setFavourites:Function}) => {
-  const { id, url, title, userID, isLoaded, favourites, isFav, setFavourites } = props
-  const [isFavourite, setIsFavourite] = useState(isFav)
+  const GifContainer = () => {
 
-  console.log(setFavourites)
+  const title="titl",url="https://photos.demandstudios.com/getty/article/129/23/87563262.jpg",isFavourite=true
   const handleFavourite = () => {
-    if (!(isLoaded && userID)) {
-      alert("Please Login")
-      return
-    }
-    if (isFavourite === null) {
-      for (let fav of favourites){
-        if (fav.id === id)
-          setIsFavourite(true) 
-      }
-      setIsFavourite(false)
-    }
-    if (isFavourite === true) {
-      setFavourites((prevFavs: any[])=>prevFavs.filter((fav: { id: string }) => fav.id !== id))
-    } else if (isFavourite === false) {
-      setFavourites([...favourites, { id: id, title: title, url: url  }])
-    }
+    alert("favourite")
   }
-
   return (
 
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 glass rounded-lg m-1">

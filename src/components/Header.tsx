@@ -1,11 +1,23 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { getCurrentUser, signOutUser } from "../firebase/auth"
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname()
+
+  const [user, setUser] = useState(null);
+
+
+  useEffect(() => {
+    getCurrentUser().then((user) => {
+      setUser(user);
+      console.log(user);
+    });
+  }, []);
+
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -58,9 +70,17 @@ function Header() {
             </Link>
 
             <div>
-                <Link className="block font-semibold md:inline-block md:mt-0 text-gray-300 hover:text-white mr-4" href="/login">
-                  Sign In / Sign Up
-                </Link>
+              {user ? (
+                <div
+                  className="block font-semibold cursor-pointer md:inline-block md:mt-0 text-gray-300 hover:text-white mr-4"
+                  onClick={async () => {
+                    await signOutUser();
+                    window.location.reload();
+                  }}
+                > SignOut </div>
+              ) : (
+                <Link className="block font-semibold md:inline-block md:mt-0 text-gray-300 hover:text-white mr-4" href="/signin"> Login </Link>
+              )}
             </div>
           </div>
         </div>

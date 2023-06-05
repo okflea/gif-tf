@@ -1,11 +1,10 @@
 "use client";
 
 import { ChangeEvent, useState } from "react";
-import GifContainer from "../components/GifContainer";
-import debounce from "../utils/debounce";
-import useLocalStorage from "../utils/useLocalStorage";
+import GifContainer from "../../components/GifContainer";
+import debounce from "../../utils/debounce";
 
-interface Data {
+type Data ={
   id: string;
   title: string;
   // url: string;
@@ -14,26 +13,19 @@ interface Data {
       webp: string;
     };
   }
-
 }
 const Page = () => {
   const [data, setData] = useState<Array<Data>>([]);
   const [selectedNumber, setSelectedNumber] = useState<number | undefined>();
   const userId="",isLoaded=""//TODO 
-  const [favourites, setFavourites] = useLocalStorage(`${userId}`, [])
-
 
   const handleNumberClick = (number: number) => {
     setSelectedNumber(number);
   }
 
   const handleFetch  = async (e:ChangeEvent<HTMLInputElement>) => {
-  // const handleFetch = async (e:  ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     let query = " "
-    // if (e.target.search)
-      // query = e.target.search.value;
-    // else
       query = e.target.value;
     if (query.trim() === "")
       return;
@@ -81,20 +73,18 @@ const Page = () => {
         </div>
       </form>
       {data?.length > 0 && (
-
         <>
           <p className="text-slate-200 font-thin mt-4">double click on the star button to stash</p>
           <div
             className={`glass mt-4 w-full flex flex-wrap gap-2 justify-center rounded-lg max-w-5xl mx-auto p-5 md:p-16 `}>
             {data.map((gif) => 
               <p>refactored gifcontainer </p>//TODO
+
               // <GifContainer key={gif.id} id={gif.id} title={gif.title} url={gif.images.fixed_width_downsampled.webp} userID={userId} isLoaded={isLoaded} favourites={favourites} setFavourites={setFavourites} isFav={false}/>
             )}
           </div>
-
         </>
       )}
-
     </div>
   );
 };
