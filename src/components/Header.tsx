@@ -2,20 +2,18 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { getCurrentUser, signOutUser } from "../firebase/auth"
+// import { getCurrentUser, signOutUser } from "../firebase/auth"
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
+import { auth } from '@/firebase/init';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname()
-
-  const [user, setUser] = useState(null);
-
+  const [user] = useAuthState(auth)
+  const [signOut] = useSignOut(auth);
 
   useEffect(() => {
-    getCurrentUser().then((user) => {
-      setUser(user);
-      console.log(user);
-    });
+
   }, []);
 
 
@@ -74,8 +72,10 @@ function Header() {
                 <div
                   className="block font-semibold cursor-pointer md:inline-block md:mt-0 text-gray-300 hover:text-white mr-4"
                   onClick={async () => {
-                    await signOutUser();
-                    window.location.reload();
+                    const success = await signOut();
+                    if (success) {
+                      alert('You are sign out');
+                    }
                   }}
                 > SignOut </div>
               ) : (

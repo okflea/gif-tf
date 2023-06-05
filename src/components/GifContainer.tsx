@@ -1,9 +1,15 @@
 'use client'
 import Image from 'next/image'
 
-  const GifContainer = () => {
+type gifData = {
+  id: string
+  url:string
+  title:string
+}
 
-  const title="titl",url="https://photos.demandstudios.com/getty/article/129/23/87563262.jpg",isFavourite=true
+const GifContainer = () => {
+
+  const title = "titl", url = "https://photos.demandstudios.com/getty/article/129/23/87563262.jpg", isFavourite = true
   const handleFavourite = () => {
     alert("favourite")
   }
